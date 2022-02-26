@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#F3213A</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FragmentScenarioEmptyFragmentActivityTheme" parent="android:Theme.WithActionBar">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+</resources>

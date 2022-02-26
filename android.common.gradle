@@ -1,0 +1,96 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion Versions.androidCompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Versions.androidMinSdkVersion
+        targetSdkVersion Versions.androidTargetSdkVersion
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility Versions.javaCompatibility
+        targetCompatibility Versions.javaCompatibility
+    }
+
+    kotlinOptions {
+        jvmTarget = Versions.kotlinJvmTarget
+    }
+
+    buildFeatures{
+        viewBinding = true
+    }
+}
+
+dependencies {
+    // Kotlin
+    implementation Lib.kotlin
+    implementation Lib.coroutines
+    implementation Lib.coroutinesAndroid
+    implementation Lib.javaxAnnotation
+    implementation Lib.javaxInject
+
+    // Common Test libs
+    testImplementation TestLib.coroutines
+    androidTestImplementation TestLib.androidArchCore
+    androidTestImplementation TestLib.truth
+
+    testImplementation TestLib.junit
+    testImplementation TestLib.kotlinJUnit
+    testImplementation TestLib.mockito
+    testImplementation TestLib.androidCore
+    testImplementation TestLib.robolectric
+    androidTestImplementation TestLib.androidFragment
+
+    // Room
+    implementation Lib.room_runtime
+    kapt Lib.roomCompiler
+    implementation Lib.room
+
+    //Dagger - Hilt
+    implementation Lib.hilt
+    kapt Lib.hilt_compiler
+    kapt Lib.hilt_compiler_kapt
+    kapt Lib.hilt_compiler_kapt_
+    implementation Lib.hilt_viewmodel
+    annotationProcessor Lib.hilt_compiler_kapt
+
+    // Lifecycle
+    implementation Lib.lifecycle_extn
+    implementation Lib.lifecycle_livedata
+    implementation Lib.lifecycleRuntime
+    implementation Lib.lifecycleRuntime_ktx
+
+    // Coroutine Lifecycle Scopes
+    implementation Lib.viewmodel
+    implementation Lib.android_fragment
+    implementation Lib.gson
+
+    //Timber
+    implementation Lib.timber
+
+    androidTestImplementation TestLib.hilt_android_test
+    kaptAndroidTest Lib.hilt_compiler
+
+    // Retrofit
+    implementation Lib.retrofit
+    implementation Lib.retrofit_gson
+    implementation Lib.okhttp
+    implementation Lib.okhttp_log
+    implementation Lib.picasso
+}

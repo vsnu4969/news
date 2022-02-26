@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+apply from: "$rootDir/android.common.gradle"
+android {
+    defaultConfig {
+        applicationId "com.project.news"
+        //Uncomment below line to run Hilt espresso testing
+        //comment below line for running AndroidJunit runner
+        testInstrumentationRunner "com.project.news.hiltUtil.HiltTestRunner"
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation Lib.android_core
+    implementation Lib.android_appCompat
+    implementation Lib.material
+    implementation Lib.constraintLayout
+    implementation Lib.legacy_support
+    testImplementation TestLib.junit
+    androidTestImplementation TestLib.androidJUnit
+    androidTestImplementation TestLib.espressoCore
+}
